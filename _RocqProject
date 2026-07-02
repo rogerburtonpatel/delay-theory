@@ -1,0 +1,10 @@
+-R theories Delay
+
+-arg -w -arg -undo-batch-mode
+
+theories/Utils.v
+theories/Core.v
+theories/Eq.v
+theories/Bind.v
+theories/MonadLang.v
+theories/OldMonadLang.v
