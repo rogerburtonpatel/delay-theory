@@ -166,7 +166,8 @@ Proof.
   apply equi_later_eq.
 Qed.
 
-(* this proof relies on up-to bind of equi, which is nontrivial *)
+(* this proof relies on up-to bind of equi, which is
+  the nontrivial property proved by enhanced (tower) coinduction *)
 Lemma Mon_law_2 {A} (m : mon A) : run (Bind m (@Ret A)) == run m.
 Proof.
   rewrite run_Bind.

@@ -57,6 +57,21 @@ Proof.
   - intros [v [HXv Hgw]]. eapply terminates_bind_bwd. exact HXv. exact Hgw.
 Qed.
 
+(* notes for Xavier in the comments of these functions. *)
+
+
+(* up to bind at the chain. 
+Note that we must put type quantifier under the [sim] argument of equi_ 
+in order for this to work. 
+This is a workable solution but somewhat annoying. 
+*)
+Fail Lemma bind_cong {A B} (x y : delay A) (f g : A -> delay B) (c : Chain equi_mon):
+  elem c x y -> (forall a, elem c (f a) (g a)) -> elem c (bind x f) (bind y g).
+
+
+(* up to bind at the gfp. because equi (the gfp) is type-quantified 
+   independently at each instance (not necessarily the same chain, 
+   but every chain terminates at the gfp), this works. *)
 Lemma bind_cong {A B} (x y : delay A) (f g : A -> delay B) :
   x == y -> (forall a, f a == g a) -> bind x f == bind y g.
 Proof.
