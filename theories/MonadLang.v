@@ -174,6 +174,19 @@ Proof.
   transitivity (bind (run m) (fun x => now x)).
   - apply bind_cong.
     + reflexivity.
+    (* this case is just 'run corecursion' *)
+    + intro a. apply run_Ret.
+  - apply bind_ret_r.
+Qed.
+
+
+Lemma Mon_law_2_direct {A} (m : mon A) : run (Bind m (@Ret A)) == run m.
+Proof.
+  rewrite run_Bind.
+  (* revert m. coinduction c cih. intro m. do 3 red. *)
+  transitivity (bind (run m) (fun x => now x)).
+  - apply bind_cong.
+    + reflexivity.
     + intro a. apply run_Ret.
   - apply bind_ret_r.
 Qed.
